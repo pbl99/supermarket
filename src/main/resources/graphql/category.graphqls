@@ -1,0 +1,18 @@
+type CategoryDTO{
+	id: ID!
+	name: String!
+}
+
+input CategoryInput{
+	name: String!
+}
+
+extend type Query{
+	findCategory(id: ID!): CategoryDTO
+	findAllCategories: [CategoryDTO]
+}
+
+extend type Mutation{
+	createCategory(categoryInput: CategoryInput): Boolean
+	deleteCategory(id: ID!): Boolean
+}

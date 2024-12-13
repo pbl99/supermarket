@@ -1,0 +1,28 @@
+type ProductDTO {
+    id: ID!
+    name: String!
+    description: String!
+    weight: Float
+    imageUrl: String
+    brandName: String!
+    categoryName: String!
+}
+
+input ProductInput {
+    name: String!
+    description: String!
+    weight: Float
+    imageUrl: String
+    brandName: String!
+    categoryName: String!
+}
+
+extend type Query{
+	findProduct(id: ID!): ProductDTO
+	findAllProducts: [ProductDTO]
+}
+
+extend type Mutation{
+	createProduct(productInput: ProductInput): Boolean
+	deleteProduct(id: ID!): Boolean
+}

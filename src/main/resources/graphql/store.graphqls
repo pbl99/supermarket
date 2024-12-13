@@ -1,0 +1,19 @@
+type StoreDTO{
+	name: String!
+	address: String!
+}
+
+input StoreInput{
+	name: String!
+	address: String!
+}
+
+extend type Query{
+	findStore(id: ID!): StoreDTO
+	findAllStores: [StoreDTO]
+}
+
+extend type Mutation{
+	createStore(storeInput: StoreInput): Boolean
+	deleteStore(id: ID!): Boolean
+}

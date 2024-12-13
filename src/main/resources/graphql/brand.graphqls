@@ -1,0 +1,19 @@
+type BrandDTO{
+	id: ID!
+	name: String!
+}
+
+input BrandInput{
+	name: String!
+}
+
+extend type Query{
+	findBrand(id: ID!): BrandDTO
+	findAllBrands: [BrandDTO]
+}
+
+extend type Mutation{
+	createBrand(brandInput: BrandInput): Boolean
+	deleteBrand(id: ID!): Boolean
+}
+
