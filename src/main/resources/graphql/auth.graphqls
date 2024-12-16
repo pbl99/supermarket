@@ -1,0 +1,19 @@
+type AuthResponse {
+    accessToken: String!
+}
+
+input RegisterInput {
+    username: String!
+    email: String!
+    password: String!
+}
+
+input LoginInput {
+    username: String!
+    password: String!
+}
+
+extend type Mutation {
+    registerUser(registerInput: RegisterInput): Boolean
+    loginUser(loginInput: LoginInput): AuthResponse
+}
