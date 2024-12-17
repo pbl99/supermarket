@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.palmen.supermarket.dto.ProductDTO;
+import com.palmen.supermarket.dto.ProductFilterDTO;
 import com.palmen.supermarket.mapper.IProductMapper;
 import com.palmen.supermarket.persistence.entity.Brand;
 import com.palmen.supermarket.persistence.entity.Category;
@@ -45,6 +46,30 @@ public class ProductServiceImpl implements IProductService {
 
 		return savedProduct.getId() != null;
 	}
+	
+	@Transactional
+	@Override
+	public ProductDTO updateProduct(ProductDTO productDTO) {
+	    Product existingProduct = productRepository.findById(productDTO.getId())
+	            .orElseThrow(() -> new RuntimeException("Product not found"));
+
+	    Product updatedProduct = Product.builder()
+	            .id(existingProduct.getId())
+	            .name(productDTO.getName() != null ? productDTO.getName() : existingProduct.getName())
+	            .description(productDTO.getDescription() != null ? productDTO.getDescription() : existingProduct.getDescription())
+	            .weight(productDTO.getWeight() != null ? productDTO.getWeight() : existingProduct.getWeight())
+	            .basePrice(productDTO.getBasePrice() != null ? productDTO.getBasePrice() : existingProduct.getBasePrice())
+	            .expirationDate(productDTO.getExpirationDate() != null ? productDTO.getExpirationDate() : existingProduct.getExpirationDate())
+	            .productType(productDTO.getProductType() != null ? productDTO.getProductType() : existingProduct.getProductType())
+	            .imageUrl(productDTO.getImageUrl() != null ? productDTO.getImageUrl() : existingProduct.getImageUrl())
+	            .category(existingProduct.getCategory()) 
+	            .brand(existingProduct.getBrand())
+	            .stocks(existingProduct.getStocks())
+	            .build();
+
+	    productRepository.save(updatedProduct);
+	    return productMapper.productToProductDTO(updatedProduct);
+	}
 
 	@Transactional
 	@Override
@@ -66,7 +91,30 @@ public class ProductServiceImpl implements IProductService {
 	@Transactional(readOnly = true)
 	@Override
 	public List<ProductDTO> findAllProducts() {
-		return productRepository.findAll().stream().map(productMapper::productToProductDTO)
+		return productRepository.findAll().stream()
+				.map(productMapper::productToProductDTO)
 				.collect(Collectors.toList());
 	}
+	
+	@Transactional(readOnly = true)
+	@Override
+	public List<ProductDTO> findAllProductsByBrand(String brandName){
+		return productRepository.findByBrand_Name(brandName).stream()
+				.map(productMapper::productToProductDTO)
+				.collect(Collectors.toList());
+	}
+	
+	@Transactional(readOnly = true)
+	@Override
+	public List<ProductDTO> findAllProductsByCategory(String category){
+		return productRepository.findByCategory_Name(category).stream()
+				.map(productMapper::productToProductDTO)
+				.collect(Collectors.toList());
+	}
+	
+	/*@Transactional(readOnly = true)
+	@Override
+	public List<ProductDTO> findAllProductsByFilters(ProductFilterDTO productFilterDTO){
+		
+	}*/
 }

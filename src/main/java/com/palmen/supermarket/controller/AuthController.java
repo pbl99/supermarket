@@ -4,9 +4,9 @@ import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.stereotype.Controller;
 
-import com.palmen.supermarket.dto.AuthResponseDto;
-import com.palmen.supermarket.dto.LoginDto;
-import com.palmen.supermarket.dto.RegisterDto;
+import com.palmen.supermarket.dto.AuthResponseDTO;
+import com.palmen.supermarket.dto.LoginDTO;
+import com.palmen.supermarket.dto.RegisterDTO;
 import com.palmen.supermarket.input.LoginInput;
 import com.palmen.supermarket.input.RegisterInput;
 import com.palmen.supermarket.mapper.IAuthMapper;
@@ -25,15 +25,15 @@ public class AuthController {
 
 	@MutationMapping
 	public Boolean registerUser(@Argument("registerInput") RegisterInput registerInput) {
-		RegisterDto registerDto = authMapper.registerInputToRegisterDto(registerInput);
+		RegisterDTO registerDto = authMapper.registerInputToRegisterDto(registerInput);
 		customUserService.registerUser(registerDto);
 		return true;
 	}
 
 	@MutationMapping
-	public AuthResponseDto loginUser(@Argument("loginInput") LoginInput loginInput) {
-		LoginDto loginDto = authMapper.loginInputToLoginDto(loginInput);
+	public AuthResponseDTO loginUser(@Argument("loginInput") LoginInput loginInput) {
+		LoginDTO loginDto = authMapper.loginInputToLoginDto(loginInput);
 		String token = authService.login(loginDto);
-		return AuthResponseDto.builder().accessToken(token).build();
+		return AuthResponseDTO.builder().accessToken(token).build();
 	}
 }

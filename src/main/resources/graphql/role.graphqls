@@ -1,0 +1,18 @@
+type RoleDTO{
+	id: ID!
+	name: String!
+}
+
+type RoleInput{
+	name: String!
+}
+
+extend type Query{
+	findAllRoles: [RoleDTO]
+}
+
+extend type Mutation{
+	createRole(roleInput: RoleInput): Boolean
+	updateRole(roleInput: RoleInput): RoleDTO
+	deleteRole(id: ID!): Boolean
+}

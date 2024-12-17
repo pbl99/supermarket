@@ -1,7 +1,7 @@
 package com.palmen.supermarket.service;
 
-import com.palmen.supermarket.dto.LoginDto;
+import com.palmen.supermarket.dto.LoginDTO;
 
 public interface IAuthService {
-	String login(LoginDto loginDto);
+	String login(LoginDTO loginDto);
 }

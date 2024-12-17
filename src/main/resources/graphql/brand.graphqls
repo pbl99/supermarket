@@ -10,10 +10,13 @@ input BrandInput{
 extend type Query{
 	findBrand(id: ID!): BrandDTO
 	findAllBrands: [BrandDTO]
+	findBrandByName(name: String!): BrandDTO
+	countProductsByBrand(id: ID!): ID!
 }
 
 extend type Mutation{
 	createBrand(brandInput: BrandInput): Boolean
+	updateBrand(brandInput: BrandInput): BrandDTO
 	deleteBrand(id: ID!): Boolean
 }
 

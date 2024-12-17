@@ -14,4 +14,10 @@ public interface IProductService {
 
 	List<ProductDTO> findAllProducts();
 
+	ProductDTO updateProduct(ProductDTO productDTO);
+
+	List<ProductDTO> findAllProductsByBrand(String brandName);
+
+	List<ProductDTO> findAllProductsByCategory(String category);
+
 }

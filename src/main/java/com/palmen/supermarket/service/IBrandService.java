@@ -13,4 +13,10 @@ public interface IBrandService {
 	BrandDTO findBrand(Long id);
 
 	List<BrandDTO> findAllBrands();
+
+	BrandDTO updateBrand(BrandDTO brandDTO);
+
+	BrandDTO findBrandByName(String name);
+
+	Long countProductsByBrand(Long id);
 }

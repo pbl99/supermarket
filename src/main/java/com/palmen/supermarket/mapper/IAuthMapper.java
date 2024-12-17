@@ -1,15 +1,15 @@
 package com.palmen.supermarket.mapper;
 
 import org.mapstruct.Mapper;
-import com.palmen.supermarket.dto.LoginDto;
-import com.palmen.supermarket.dto.RegisterDto;
+import com.palmen.supermarket.dto.LoginDTO;
+import com.palmen.supermarket.dto.RegisterDTO;
 import com.palmen.supermarket.input.LoginInput;
 import com.palmen.supermarket.input.RegisterInput;
 
 @Mapper(componentModel = "spring")
 public interface IAuthMapper {
 
-	RegisterDto registerInputToRegisterDto(RegisterInput input);
+	RegisterDTO registerInputToRegisterDto(RegisterInput input);
 
-	LoginDto loginInputToLoginDto(LoginInput input);
+	LoginDTO loginInputToLoginDto(LoginInput input);
 }

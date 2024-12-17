@@ -1,8 +1,8 @@
 package com.palmen.supermarket.service;
 
-import com.palmen.supermarket.dto.RegisterDto;
+import com.palmen.supermarket.dto.RegisterDTO;
 
 public interface IUserService {
 
-	Boolean registerUser(RegisterDto request);
+	Boolean registerUser(RegisterDTO request);
 }

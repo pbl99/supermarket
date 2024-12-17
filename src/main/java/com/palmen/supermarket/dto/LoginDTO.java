@@ -3,7 +3,7 @@ package com.palmen.supermarket.dto;
 import lombok.Data;
 
 @Data
-public class LoginDto {
+public class LoginDTO {
 
 	private String username;
 	private String password;

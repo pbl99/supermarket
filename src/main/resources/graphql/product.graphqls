@@ -20,9 +20,12 @@ input ProductInput {
 extend type Query{
 	findProduct(id: ID!): ProductDTO
 	findAllProducts: [ProductDTO]
+	findAllProductsByBrand(brandName: String!): [ProductDTO]
+	findAllProductsByCategory(category: String!): [ProductDTO]
 }
 
 extend type Mutation{
 	createProduct(productInput: ProductInput): Boolean
+	updateProduct(productInput: ProductInput): ProductDTO
 	deleteProduct(id: ID!): Boolean
 }

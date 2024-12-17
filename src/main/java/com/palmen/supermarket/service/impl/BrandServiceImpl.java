@@ -27,6 +27,20 @@ public class BrandServiceImpl implements IBrandService {
 		Brand brand = brandMapper.brandDTOToBrand(brandDTO);
 		return brandRepository.save(brand) != null;
 	}
+	
+	@Transactional
+	@Override
+	public BrandDTO updateBrand(BrandDTO brandDTO) {
+		Brand existingBrand = brandRepository.findById(brandDTO.getId())
+				.orElseThrow();
+		
+		Brand updatedBrand = Brand.builder()
+				.name(brandDTO.getName() != null ? brandDTO.getName() : existingBrand.getName())
+				.build();
+		
+		brandRepository.save(updatedBrand);
+		return brandMapper.brandToBrandDTO(updatedBrand);
+	}
 
 	@Transactional
 	@Override
@@ -54,4 +68,19 @@ public class BrandServiceImpl implements IBrandService {
 				.map(brandMapper::brandToBrandDTO)
 				.collect(Collectors.toList());
 	}
+	
+	@Transactional(readOnly = true)
+	@Override
+	public BrandDTO findBrandByName(String name){
+		return brandRepository.findByName(name)
+				.map(brandMapper::brandToBrandDTO)
+				.orElseThrow();
+	}
+	
+	@Transactional(readOnly = true)
+	@Override
+	public Long countProductsByBrand(Long id) {
+		return brandRepository.countProductsByBrandId(id);
+	}
+	
 }

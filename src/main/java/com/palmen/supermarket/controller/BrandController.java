@@ -24,6 +24,11 @@ public class BrandController {
 	}
 
 	@MutationMapping
+	public BrandDTO updateBrand(@Argument("brandInput") BrandInput brandInput) {
+		return brandService.updateBrand(brandMapper.brandInputToBrandDTO(brandInput));
+	}
+
+	@MutationMapping
 	public Boolean deleteBrand(@Argument("id") Long id) {
 		return brandService.deleteBrand(id);
 	}
@@ -37,4 +42,18 @@ public class BrandController {
 	public List<BrandDTO> findAllBrands() {
 		return brandService.findAllBrands();
 	}
+
+	@QueryMapping
+	public BrandDTO findBrandByName(@Argument("brandName") String brandName) {
+		return brandService.findBrandByName(brandName);
+	}
+	
+	@QueryMapping
+	public Long countProductsByBrand(@Argument("id") Long id) {
+		return brandService.countProductsByBrand(id);
+	}
+
+	// obtener marcas más populares
+	// contar los productos asociados a una marca
+	
 }

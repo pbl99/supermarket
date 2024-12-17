@@ -1,15 +1,11 @@
 package com.palmen.supermarket.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class BrandDTO {
+public class RoleDTO {
 
 	private Long id;
 	private String name;

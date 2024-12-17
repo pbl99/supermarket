@@ -7,7 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import com.palmen.supermarket.dto.LoginDto;
+import com.palmen.supermarket.dto.LoginDTO;
 import com.palmen.supermarket.security.jwt.JwtTokenProvider;
 import com.palmen.supermarket.service.IAuthService;
 
@@ -20,7 +20,7 @@ public class AuthServiceImpl implements IAuthService {
 	private JwtTokenProvider jwtTokenProvider;
 
 	@Override
-	public String login(LoginDto loginDto) {
+	public String login(LoginDTO loginDto) {
 
 		// 01 - AuthenticationManager is used to authenticate the user
 		Authentication authentication = authenticationManager

@@ -15,6 +15,7 @@ public interface IBrandMapper {
 
 	BrandDTO brandToBrandDTO(Brand brand);
 
+	@Mapping(target = "id", ignore = true)
 	BrandDTO brandInputToBrandDTO(BrandInput brandInput);
 
 }
